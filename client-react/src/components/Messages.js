@@ -1,7 +1,5 @@
 import React from 'react';
 
-// import {realMessage, getMessage} from '../screens/Chat';
-
 
 class Messages extends React.Component {
     constructor(props) {
@@ -10,31 +8,26 @@ class Messages extends React.Component {
     }
     
     render() {
-      let messageDom = this.props.data.map((message, index) => {
+      let messageDom = this.props.data.map((message) => {
         return (
-          <span key={this.counter++} className={(this.props.isId) ? 'messageRight' : 'messageLeft'}>{message}</span>
+          <div className='messageBox' key={this.counter++}>
+            <div className='userInfo'>
+              <img src={this.props.user.src} alt='userPicture'></img>
+              <span>{this.props.user.name}</span>
+            </div>
+            <span>{message}</span>
+          </div>
         )
       });
       
   
       return (
-        <div className='messageBox'>
+        <div className='mainBox'>
           {messageDom}
         </div>
       )
     }
 }
 
-// function messageTest() {
-//     if (realMessage === getMessage) {
-//         realMessage = '';
-//         getMessage = '';
-//         return true;
-//     } else {
-//         realMessage = '';
-//         getMessage = '';
-//         return false;
-//     }
-// }
 
 export default Messages;

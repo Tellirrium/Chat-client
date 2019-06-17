@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #F8F9F9;
+}
+
 .google {
     width: 150px;
     height: 50px;
@@ -69,34 +73,48 @@
     padding-bottom: 15px;
 }
 
-.messageRight {
-    align-self: flex-end;
-    width: 100px;
-    height: 40px;
-    background-color: lightskyblue;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    margin: 5px;
-}
 
-.messageLeft {
-    align-self: flex-start;
-    width: 100px;
-    height: 40px;
-    background-color: lightgreen;
-    display: inline-block;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    margin: 5px;
-}
 
 .messageBox {
     display: flex;
     flex-direction: column;
+    width: 26%;
+    margin: 10px;
+    background-color: lightcyan;
+    padding: 15px;
+    word-wrap: break-word;
+    border-radius: 10px;
+    border: 1px solid cyan;
+}
+
+.messageBox > span {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    margin-top: 5px;
+}
+
+.mainBox {
+    overflow: auto;
+}
+
+.userInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.userInfo > img {
+    width: 50px;
+    height: 50px;
+}
+
+.userInfo > span {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    font-weight: bold;
+}
+
+.headline {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    font-size: 23px;
+    text-align: center;
+    margin-top: 30px;
 }

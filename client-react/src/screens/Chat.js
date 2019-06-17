@@ -1,19 +1,18 @@
 import React from 'react';
 import io from 'socket.io-client';
-import Messages from '../components/Messages'
+import Messages from '../components/Messages';
+import {connect} from 'react-redux';
+
+import {addMessage} from '../Redux/actions';
 
 let socket;
-let messages = [];
-let trueId;
+// let messages = [];
+// let trueId;
 
 
 class Chat extends React.Component {
     constructor() {
         super();
-
-        this.state = {
-            message: ''
-        }
 
         this.sendMessage = this.sendMessage.bind(this);
         this.myRef = React.createRef();
@@ -29,9 +28,11 @@ class Chat extends React.Component {
         socket = io.connect('http://localhost:4000');
         socket.on('message', (data) => {
             console.log(data.text);
-            trueId = (socket.id === data.id ? true : false);
-            messages.push(data.text);
-            this.setState({message: data.text});
+            // trueId = (socket.id === data.id ? true : false);
+            // messages.push(data.text);
+            // this.setState({message: data.text});
+            this.props.addMessage(data.text);
+            console.log(this.props);
         });
     }
   
@@ -40,7 +41,7 @@ class Chat extends React.Component {
         <div className='box'>
           <span className='name'>Common Chat</span>
           <div className='chat'>
-            <Messages data={messages} isId={trueId}/>
+            <Messages data={this.props.messages} user={this.props.user}/>
           </div>
           <form className='form' onSubmit={this.sendMessage}>
             <input placeholder='Write the message' className='input' ref={this.myRef}/>
@@ -51,7 +52,9 @@ class Chat extends React.Component {
     }
   }
 
-
-  export default Chat;
+  const mapStateToProps = (state) => {
+    return {user: state.user, messages: state.messages};
+  }
+  export default connect(mapStateToProps, {addMessage})(Chat);
 
   
