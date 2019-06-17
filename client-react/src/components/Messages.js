@@ -12,10 +12,10 @@ class Messages extends React.Component {
         return (
           <div className='messageBox' key={this.counter++}>
             <div className='userInfo'>
-              <img src={this.props.user.src} alt='userPicture'></img>
-              <span>{this.props.user.name}</span>
+              <img src={message.person.src} alt='userPicture'></img>
+              <span>{message.person.name}</span>
             </div>
-            <span>{message}</span>
+            <span>{message.text}</span>
           </div>
         )
       });
@@ -23,7 +23,16 @@ class Messages extends React.Component {
   
       return (
         <div className='mainBox'>
-          {messageDom}
+          {messageDom} 
+           {/* {this.props.data.map(message => ( */}
+        {/* //     <div className='messageBox' key={this.counter++}>
+        //               <div className='userInfo'>
+        //                 <img src={message.person.src} alt='userPicture'></img>
+        //                 <span>{message.person.name}</span>
+        //               </div>
+        //               <span>{message.text}</span>
+        //             </div>
+        //   ))} */}
         </div>
       )
     }

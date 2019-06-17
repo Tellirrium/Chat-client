@@ -6,8 +6,8 @@ import {connect} from 'react-redux';
 import {addMessage} from '../Redux/actions';
 
 let socket;
-// let messages = [];
-// let trueId;
+let name;
+// let person;
 
 
 class Chat extends React.Component {
@@ -20,28 +20,31 @@ class Chat extends React.Component {
     
     sendMessage(e) {
       e.preventDefault();
-      socket.send(this.myRef.current.value);
+      socket.send({
+        message: this.myRef.current.value,
+        name: name
+      });
       this.myRef.current.value = '';
     }
 
     componentDidMount() {
         socket = io.connect('http://localhost:4000');
         socket.on('message', (data) => {
-            console.log(data.text);
-            // trueId = (socket.id === data.id ? true : false);
-            // messages.push(data.text);
-            // this.setState({message: data.text});
-            this.props.addMessage(data.text);
-            console.log(this.props);
+            console.log(data);
+            // console.log(data.person);
+            this.props.addMessage(data);
+            console.log(name);
         });
     }
   
     render() {
+      name = this.props.user.name;
+      console.log(this.props);
       return (
         <div className='box'>
           <span className='name'>Common Chat</span>
           <div className='chat'>
-            <Messages data={this.props.messages} user={this.props.user}/>
+            <Messages data={this.props.messages}/>
           </div>
           <form className='form' onSubmit={this.sendMessage}>
             <input placeholder='Write the message' className='input' ref={this.myRef}/>

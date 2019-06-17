@@ -51,7 +51,7 @@ function sendToken(data, props) {
     };
 
     props.addUser(person);
-    console.log(person);
+    
   }).then(props.history.push('/chat'));
 }
 
