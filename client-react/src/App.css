@@ -27,13 +27,13 @@ body {
     flex-direction: column;
     align-items: center;
     border: solid 2px lightblue;
-    padding: 10px 0px;
+    padding: 10px 10px;
     margin-top: 100px;
 }
 
 .box {
     width: 60%;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -49,6 +49,7 @@ body {
     border-radius: 5px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .form {
@@ -93,7 +94,7 @@ body {
 }
 
 .mainBox {
-    overflow: auto;
+    /* overflow: auto; */
 }
 
 .userInfo {
@@ -117,4 +118,183 @@ body {
     font-size: 23px;
     text-align: center;
     margin-top: 30px;
+}
+
+.infoBar {
+    border: 1px solid cyan;
+    margin-right: 20px;
+    width: 300px;
+    margin-top: 80px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.infoBar > p {
+    margin-right: 20px;
+}
+
+.infoBar > img {
+    width: 50px;
+    height: 50px;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+}
+
+.none {
+    display: none;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login input {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 2px solid lightslategray;
+    outline: none;
+    width: 100%;
+}
+
+.loginButton {
+    width: 30%;
+    height: 30px;
+    align-self: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.login > p {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    align-self: center;
+    margin-bottom: 13px;
+    color: lightslategray;
+}
+
+.email {
+    position: relative;
+}
+
+.cross {
+    position: absolute;
+    right: 15px;
+    top: 22%;
+    color: red;
+    font-size: 20px;
+}
+
+.none {
+    display: none;
+}
+
+.checkCircle {
+    position: absolute;
+    right: 15px;
+    top: 16%;
+    color: green;
+    font-size: 22px;
+    animation: checkEmail  1.5s ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes checkEmail {
+    0% {
+        opacity: 1;
+    }
+    35% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.error, .none2 {
+    padding-top: 10px;
+}
+
+.login .error {
+    color: red;
+    opacity: 1;
+}
+
+.none2 {
+    opacity: 0;
+}
+
+.autorize .registrWord {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    color: brown;
+    cursor: pointer;
+}
+
+.autorize .registrWord:hover {
+    text-decoration: underline;
+}
+
+.mainDivRegistr {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px lightblue;
+    padding: 10px 10px;
+    margin-top: 100px;
+    width: 700px;
+}
+
+.mainDivRegistr > input {
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 2px solid lightslategray;
+    outline: none;
+    width: 80%;
+    background-color: #FBFBFB;
+}
+
+.mainDivRegistr > span {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    font-size: 20px;
+}
+
+#inputGreen {
+    border-bottom: 2px solid lightgreen;
+}
+
+#inputRed {
+    border-bottom: 2px solid lightcoral;
+}
+
+#inputDefault {
+    border-bottom: 2px solid lightslategray;
+}
+
+.registrButton {
+    width: 30%;
+    height: 30px;
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+.error {
+    font-family: 'Encode Sans Semi Expanded', sans-serif;
+    color: red;
+    opacity: 1;
+    padding: 5px 0px;
+}
+
+.none3 {
+    opacity: 0;
+    padding: 5px 0px;
 }
