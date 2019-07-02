@@ -5,6 +5,7 @@ export const addStyleCheck = (className) => ({type:'ADD_CLASSNAME_CHECK', payloa
 export const checkValue = (boolean) => ({type:'ADD_BOOL', payload: boolean});
 export const registrValue = (boolean) => ({type:'ADD_BOOL2', payload: boolean});
 export const wrongPassword = (boolean) => ({type:'ADD_BOOL3', payload: boolean});
+export const getUsers = (users) => ({type:'SHOW_USERS', payload: users});
 
 export const checkUser = (self, userInfo) => {
     return (dispatch) => {
@@ -50,3 +51,18 @@ export const registrUser = (self, user) => {
         });
     };
 };
+
+export const showUsersFromBd = () => {
+    return (dispatch) => {
+        const myInit = { method: 'POST',
+                         headers: {'Content-Type': 'application/json'},
+                         body: JSON.stringify({})
+                       };
+
+        fetch('http://localhost:4000/showUsers', myInit).then( res => res.json()).then(response => {
+            console.log(response);
+            
+            dispatch(getUsers(response));
+        });
+    }
+}

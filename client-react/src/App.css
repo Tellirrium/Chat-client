@@ -127,16 +127,16 @@ body {
     margin-top: 80px;
     height: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: space-between;
     padding: 5px;
 }
 
-.infoBar > p {
+.infoBar p {
     margin-right: 20px;
 }
 
-.infoBar > img {
+.infoBar img {
     width: 50px;
     height: 50px;
 }
@@ -297,4 +297,31 @@ body {
 .none3 {
     opacity: 0;
     padding: 5px 0px;
+}
+
+.personalInfo {
+    display: flex;
+    justify-content: space-between;
+}
+
+.personalInfo p {
+    align-self: center;
+}
+
+.usersButton {
+    width: 100%;
+    height: 30px;
+    margin: 40px 0px 10px 0px;
+    cursor: pointer;
+}
+
+.userInfo2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 5px;
+    margin: 5px 0px;
+}
+
+.userInfo2 span {
+    align-self: center;
 }

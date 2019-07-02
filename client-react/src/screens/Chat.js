@@ -1,14 +1,13 @@
 import React from 'react';
 import io from 'socket.io-client';
 import Messages from '../components/Messages';
+import Users from '../components/Users'
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
 
-import {addMessage} from '../Redux/actions';
+import {addMessage, showUsersFromBd} from '../Redux/actions';
 
 let socket;
 let name;
-// let person;
 
 
 class Chat extends React.Component {
@@ -37,6 +36,10 @@ class Chat extends React.Component {
       window.location.reload();
     }
 
+    showUsers = () => {
+      this.props.showUsersFromBd();
+    }
+
     componentDidMount() {
         socket = io.connect('http://localhost:4000');
         socket.on('message', (data) => {
@@ -53,9 +56,13 @@ class Chat extends React.Component {
       return (
         <div className='app'>
         <div className='infoBar'>
-          <img src={this.props.src} alt='userphoto'></img>
-          <p>{this.props.user.name ? this.props.user.name : 'Аноним, авторизуйся'}</p>
-          <button className={this.props.user.name ? 'none' : ''} onClick={this.changeHistory}>Авторизация</button>
+          <div className='personalInfo'>
+            <img src={this.props.src} alt='userphoto' className={this.props.src ? '' : 'none'}></img>
+            <p>{this.props.user.name ? this.props.user.name : 'Аноним, авторизуйся'}</p>
+            <button className={this.props.user.name ? 'none' : ''} onClick={this.changeHistory}>Авторизация</button>
+          </div>
+          <button className='usersButton' onClick={this.showUsers}>Show users</button>
+          <Users data={this.props.users}/>
         </div>
         <div className='box'>
           <span className='name'>Common Chat</span>
@@ -74,9 +81,9 @@ class Chat extends React.Component {
 
 
   const mapStateToProps = (state) => {
-    return {user: state.user, messages: state.messages, src: state.user.src};
+    return {user: state.user, messages: state.messages, src: state.user.src, users: state.users};
   };
 
-  export default connect(mapStateToProps, {addMessage})(Chat);
+  export default connect(mapStateToProps, {addMessage, showUsersFromBd})(Chat);
 
   
