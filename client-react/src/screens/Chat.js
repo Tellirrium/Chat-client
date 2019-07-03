@@ -1,12 +1,10 @@
 import React from 'react';
-import io from 'socket.io-client';
 import Messages from '../components/Messages';
 import Users from '../components/Users'
 import {connect} from 'react-redux';
 
-import {addMessage, showUsersFromBd} from '../Redux/actions';
+import {addMessage, showUsersFromBd, sendMessage, closeSocket} from '../Redux/actions';
 
-let socket;
 let name;
 
 
@@ -19,16 +17,19 @@ class Chat extends React.Component {
         this.myRef = React.createRef();
         this.myRefScroll = React.createRef();
     }
+
+    componentDidUpdate() {
+      this.myRefScroll.current.scrollTop = this.myRefScroll.current.scrollHeight - this.myRefScroll.current.clientHeight;
+    }
+
+    componentWillUnmount() {
+      closeSocket();
+    }
     
     sendMessage(e) {
       e.preventDefault();
-      if (this.myRef.current.value) {
-        socket.send({
-          message: this.myRef.current.value,
-          name: name
-        });
-        this.myRef.current.value = '';
-      }
+      sendMessage(this.myRef.current.value, name);
+      this.myRef.current.value = '';
     }
 
     changeHistory() {
@@ -38,16 +39,6 @@ class Chat extends React.Component {
 
     showUsers = () => {
       this.props.showUsersFromBd();
-    }
-
-    componentDidMount() {
-        socket = io.connect('http://localhost:4000');
-        socket.on('message', (data) => {
-            console.log(data);
-            this.props.addMessage(data);
-            console.log(name);
-            this.myRefScroll.current.scrollTop = this.myRefScroll.current.scrollHeight - this.myRefScroll.current.clientHeight;
-        });
     }
   
     render() {

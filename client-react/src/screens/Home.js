@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
-import {addUser, addStyleCross, addStyleCheck, checkValue, checkUser} from '../Redux/actions';
+import {addUser, addStyleCross, addStyleCheck, checkValue, checkUser, sendToken} from '../Redux/actions';
 
 
 class Home extends React.Component {
@@ -51,7 +51,7 @@ class Home extends React.Component {
   
       const responseGoogle = (response) => {
         console.log(response.tokenId);
-        sendToken(response.profileObj, this.props);  
+        this.props.sendToken(response.profileObj, this);
       }
   
       return (
@@ -87,29 +87,9 @@ class Home extends React.Component {
     }
 }
 
-function sendToken(data, props) {
-  const myInit = { method: 'POST',
-                  headers: {'Content-Type': 'application/json'},
-                  body: JSON.stringify({data})
-                };
-
-  console.log(data);
-
-  fetch('http://localhost:4000/auth', myInit).then( res => res.json()).then(data => {
-    const person = {
-      name: data.name,
-      src: data.src
-    };
-    console.log(person);
-    props.addUser(person);
-    localStorage.person = person.name;
-    localStorage.picture = person.src;
-  }).then(props.history.push('/chat'));
-}
-
 
 const mapStateToProps = (state) => {
   return {user: state.user, messages: state.messages, styleIconsCross: state.styleIconsCross, styleIconsCheck: state.styleIconsCheck, value: state.value, password: state.password};
 };
 
-export default connect(mapStateToProps, {addUser, addStyleCross, addStyleCheck, checkValue, checkUser}) (Home);
+export default connect(mapStateToProps, {addUser, addStyleCross, addStyleCheck, checkValue, checkUser, sendToken}) (Home);
